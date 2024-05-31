@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  RedirectToSignIn,
+} from "@clerk/nextjs";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -16,7 +22,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={font.className}>{children}</body>
+      <ClerkProvider>
+        <body className={font.className}>
+          {/* <SignedIn> */}
+            {children}
+          {/* </SignedIn> */}
+          <SignedOut>
+            <RedirectToSignIn />
+          </SignedOut>
+        </body>
+      </ClerkProvider>
     </html>
+
   );
 }
