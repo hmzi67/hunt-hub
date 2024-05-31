@@ -7,6 +7,8 @@ import {
   SignedOut,
   RedirectToSignIn,
 } from "@clerk/nextjs";
+import { ThemeProvider } from "@/components/providers/theme-provider";
+import { cn } from "@/lib/utils";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -21,11 +23,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <ClerkProvider>
-        <body className={font.className}>
+        <body className={cn(
+          font.className,
+          `bg-white dark:bg-[#313338]`
+          )}>
           {/* <SignedIn> */}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            storageKey="huntHub-theme"
+          >
             {children}
+          </ThemeProvider>
           {/* </SignedIn> */}
           <SignedOut>
             <RedirectToSignIn />
