@@ -49,6 +49,7 @@ export async function POST (
                 },
             },
         });
+        
         return NextResponse.json(server);
     } catch (error) {
         console.log("CHANNEL_POST", error);
