@@ -49,7 +49,7 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
             <ChatInput  
                 name={channel.name}
                 type="channel"
-                apiUrl="/api/sockets/io"
+                apiUrl="/api/socket/messages"
                 query={{
                     channelId: channel.id,
                     serverId: channel.serverId
